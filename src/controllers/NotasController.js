@@ -6,7 +6,7 @@ module.exports = {
             const notes = await Note.findAll()
             return res.json(notes);
         } catch (err) {
-            return console.error("ocorreu o seguinte erro na listagem de notas: ", err);
+            return console.error("The following error occurred in the notes list: ", err);
         }
     },
     async show(req, res) {
@@ -14,19 +14,19 @@ module.exports = {
             const note = await Note.findAll({ where: { id: req.params.id } });
             return res.json(note);
         } catch (err) {
-            return console.err('ocorreu o seguinte erro na busca: ', err);
+            return console.err('The following error occurred in the search: ', err);
         }
     },
     async create(req, res) {
         const { content } = req.body;
         try {
             if (!content || content.trim() === '') {
-                return res.status(400).json({ msg: 'O conteúdo não pode estar vazio' });
+                return res.status(400).json({ msg: 'Content cannot be empty' });
             }
             const note = await Note.create({ content });
-            return res.json(note);
+            return res.status(200).json(note);
         } catch (error) {
-            return console.error('Erro na criação', err);
+            return console.error('Error in creation', err);
         }
     },
     async update(req, res) {
@@ -37,27 +37,28 @@ module.exports = {
         try {
             const note = await Note.findOne({ where: { id: req.params.id } });
             if (!note) {
-                return res.status(404).json({ msg: `Não é possível editar uma nota com ID inexistente: ${req.params.id}` });
+                return res.status(404).json({msg: `It is not possible to edit a note with a non-existent ID: ${req.params.id}`
+                });
             }
             if (!content || content.trim() === '') {
-                return res.status(400).json({ msg: 'O conteúdo não pode estar vazio' });
+                return res.status(400).json({ msg: 'Content cannot be empty' });
             }
             await Note.update({ content, creat }, { where: { id: { [Op.eq]: id } } });
-            return res.json({ msg: `Conteudo da Nota id: ${id} atualizado com sucesso!!` });
+            return res.json({ msg: `Note Content id: ${id} updated successfully!` });
         } catch (error) {
-            return res.json({ msg: `Nota ${id} não foi atualizada` }, err);
+            return res.json({ msg: `Note ${id} has not been updated` }, err);
         }
     },
     async delete(req, res) {
         try {
             const note = await Note.findOne({ where: { id: req.params.id } });
             if (!note) {
-                return res.status(404).json({ msg: `Não é possível excluir uma nota com ID inexistente: ${req.params.id}` });
+                return res.status(404).json({ msg: `It is not possible to delete a note with a non-existent ID: ${req.params.id}` });
             }
             await Note.destroy({ where: { id: req.params.id } });
-            return res.json({ msg: `Exclusão de Nota com ID: ${req.params.id} feita com sucesso!` });
+            return res.json({ msg: `Deletion of Note with ID: ${req.params.id} done successfully!` });
         } catch (err) {
-            return console.err("Erro na exclusão: ", err);
+            return console.err("    Deletion error:", err);
         }
     }
 }
