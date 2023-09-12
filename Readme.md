@@ -11,23 +11,19 @@ Para instalar este projeto, siga estas etapas:
 
 1. Clone o repositório: `git clone `
 2. Entre no diretório do projeto: `cd ProjetoQrLabs`
-3. Instale as dependências: 
-`npm install`
-`npm install express`
-`npm install mysql2`
-`npm install sequelize`
+3. Instale o npm: `npm install`
 
 ## Codigos importantes
 
 Configuração da database:
-const Sequelize = require('sequelize');
+`const Sequelize = require('sequelize');`
 
-const sequelize = new Sequelize('sistemaDeNotas', 'victo_hugo', '12345678', {
-  host: 'localhost',
-  dialect: 'mysql'
-});
+`const sequelize = new Sequelize('sistemaDeNotas', 'victo_hugo', '12345678', {`
+  `host: 'localhost',`
+  `dialect: 'mysql'`
+`});`
 
-module.exports = sequelize;
+`module.exports = sequelize;`
 
 
 ## Uso
