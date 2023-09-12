@@ -17,6 +17,7 @@ Para instalar este projeto, siga estas etapas:
 
 ### Configuração da database:
 
+```
 const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize('sistemaDeNotas', 'victo_hugo', '12345678', {
@@ -26,7 +27,7 @@ const sequelize = new Sequelize('sistemaDeNotas', 'victo_hugo', '12345678', {
 
 module.exports = sequelize;
 
-
+```
 ## Uso
 
 Depois de instalar o projeto, você pode executá-lo com o comando: `yarn dev`
