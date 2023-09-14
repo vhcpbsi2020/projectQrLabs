@@ -24,51 +24,6 @@ Utilize ferramentas como Posteman para testar as funcionalidades:
  #### GET LIST: `http://localhost:3001/notes/`
  #### PUT UPDATE: `http://localhost:3001/notes/id`
 
-## Codigos importantes
-
-### Configuração da database:
-
-```
-const Sequelize = require('sequelize');
-
-//configurando as informações de autenticação e tipo do banco de dados:
-const sequelize = new Sequelize('sistemaDeNotas', 'victo_hugo', '12345678', {
-  host: 'localhost',
-  dialect: 'mysql'
-});
-
-module.exports = sequelize;
-
-```
-### Criando o modelo da nota:
-```
-const Sequelize = require('sequelize');
-const sequelize = require('./database'); // importando o banco de dados para a variavel sequelize
-
-const Note = sequelize.define('Note', {
-  //criando o paramentro id:
-    id:{
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    },
-  //criando o parametro do conteudo:  
-    content: {
-        type: Sequelize.TEXT,
-        allowNull: false
-    },
-  //criando o parametro do carimbo da nota:
-    creat: {
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW
-    }
-});
-
-// realizando a sincronização com o banco de dados:
-sequelize.sync();
-
-module.exports = Note;
-```
 
 ## Licença
 
